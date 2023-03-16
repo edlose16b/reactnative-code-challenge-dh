@@ -3,4 +3,6 @@ export default class Colors {
   static blue = '#334FFA';
   static white = 'white';
   static gray = '#9B9898';
+  static green = '#00B833';
+  static red = '#FF0000';
 }
