@@ -11,16 +11,16 @@ const HomeView: FC<HomeViewProps> = _ => {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Container>
-        <View>{_buildHi()}</View>
-        <SizedBox height={20} />
-        <YourPoints />
-        <SizedBox height={20} />
-        <YourMovements />
-        <SizedBox height={200} />
-      </Container>
-    </ScrollView>
+    // <ScrollView contentInsetAdjustmentBehavior="automatic">
+    <Container>
+      <View>{_buildHi()}</View>
+      <SizedBox height={20} />
+      <YourPoints />
+      <SizedBox height={20} />
+      <YourMovements />
+      <SizedBox height={200} />
+    </Container>
+    // </ScrollView>
   );
 };
 

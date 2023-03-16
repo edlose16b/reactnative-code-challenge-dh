@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {ProductModel} from '../../../modules/products/infraestructure/models/product_model';
 import {SizedBox} from '../../shared/components';
-import Sizes from '../../shared/sizes';
 import TextStyles from '../../shared/textstyles';
 import MovementItem from './MovementItem';
 
@@ -21,7 +20,7 @@ const YourMovements: FC = () => {
       product: 'Recycled Plastic Tuna',
       points: 92984,
       image: 'https://loremflickr.com/640/480/technics',
-      is_redemption: false,
+      is_redemption: true,
       id: '2',
     }),
     ProductModel.fromJson({
@@ -37,7 +36,7 @@ const YourMovements: FC = () => {
   return (
     <View>
       <Text style={TextStyles.subtitle}>TUS MOVIMIENTOS</Text>
-      <SizedBox height={Sizes.normal} />
+      <SizedBox height={20} />
       <FlatList
         data={DATA}
         style={styles.containerList}
