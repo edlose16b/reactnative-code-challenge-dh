@@ -11,9 +11,7 @@ import {useTranslation} from 'react-i18next';
 
 const YourPoints: FC = () => {
   const {t} = useTranslation();
-  const {products: filteredProducts} = useSelector(
-    (state: AppStore) => state.products,
-  );
+  const {products} = useSelector((state: AppStore) => state.products);
 
   const month = 'December';
 
@@ -26,7 +24,7 @@ const YourPoints: FC = () => {
         <SizedBox height={9} />
         <View style={styles.pointsSection}>
           <Text style={styles.pointsNumber}>
-            {parseNumberToFixed(totalPoints(filteredProducts))}
+            {parseNumberToFixed(totalPoints(products))}
           </Text>
           <Text style={styles.pointsText}> pts</Text>
         </View>
