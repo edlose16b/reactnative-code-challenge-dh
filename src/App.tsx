@@ -10,10 +10,10 @@
 
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import HomeView from './features/home/Home';
+import FilterStateProvider from './features/home/contexts/FilterStateContext';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -23,7 +23,7 @@ const App = () => {
   };
 
   return (
-    <SafeAreaProvider>
+    <FilterStateProvider>
       <SafeAreaView style={backgroundStyle}>
         <StatusBar
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
@@ -31,7 +31,7 @@ const App = () => {
         />
         <HomeView />
       </SafeAreaView>
-    </SafeAreaProvider>
+    </FilterStateProvider>
   );
 };
 

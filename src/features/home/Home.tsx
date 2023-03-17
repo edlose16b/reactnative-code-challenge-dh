@@ -1,26 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {FC} from 'react';
-import {ScrollView, StyleSheet, Text, View, useColorScheme} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Colors from '../shared/colors';
-import YourPoints from './components/YourPoints';
 import {Container, SizedBox} from '../shared/components';
+import Footer from './components/Footer';
 import YourMovements from './components/YourMovements';
+import YourPoints from './components/YourPoints';
 
 type HomeViewProps = {};
 const HomeView: FC<HomeViewProps> = _ => {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
-    // <ScrollView contentInsetAdjustmentBehavior="automatic">
-    <Container>
-      <View>{_buildHi()}</View>
-      <SizedBox height={20} />
-      <YourPoints />
-      <SizedBox height={20} />
-      <YourMovements />
-      <SizedBox height={200} />
-    </Container>
-    // </ScrollView>
+    <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <Container>
+        <View>{_buildHi()}</View>
+        <SizedBox height={20} />
+        <YourPoints />
+        <SizedBox height={20} />
+        <YourMovements />
+        <SizedBox height={20} />
+        <Footer />
+      </Container>
+    </ScrollView>
   );
 };
 
