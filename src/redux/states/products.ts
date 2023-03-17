@@ -5,12 +5,12 @@ import {getProductsUseCase} from '../../dependency_injections';
 import {FilterOptions} from '../../features/home/contexts/FilterStateContext';
 
 export type ProductState = {
-  memoryProducts: Product[];
+  memoryProducts: Product[] | null;
   products: Product[];
 };
 
 const initialState: ProductState = {
-  memoryProducts: [],
+  memoryProducts: null,
   products: [],
 };
 
@@ -28,6 +28,10 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     filterProducts: (state, action: PayloadAction<FilterOptions>) => {
+      if (state.memoryProducts == null) {
+        return;
+      }
+
       return {
         memoryProducts: state.memoryProducts,
         products: state.memoryProducts.filter(product => {
@@ -44,6 +48,10 @@ export const productsSlice = createSlice({
     },
   },
   extraReducers: builder => {
+    builder.addCase(fetchProducts.pending, (state, _) => {
+      state = {memoryProducts: null, products: []};
+      return state;
+    });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state = {
         memoryProducts: action.payload,

@@ -6,10 +6,11 @@ import {SizedBox} from '../../shared/components';
 import TextStyles from '../../shared/textstyles';
 import MovementItem from './MovementItem';
 import {useTranslation} from 'react-i18next';
+import MovementLoader from '../../shared/loaders/movements_loader';
 
 const YourMovements: FC = () => {
   const {t} = useTranslation();
-  const {products: filteredProducts} = useSelector(
+  const {products, memoryProducts} = useSelector(
     (state: AppStore) => state.products,
   );
 
@@ -17,12 +18,16 @@ const YourMovements: FC = () => {
     <View>
       <Text style={TextStyles.subtitle}>{t('your_movements')}</Text>
       <SizedBox height={20} />
-      <FlatList
-        data={filteredProducts}
-        style={styles.containerList}
-        renderItem={({item}) => <MovementItem product={item} />}
-        keyExtractor={item => item.id}
-      />
+      {memoryProducts == null ? (
+        <MovementLoader />
+      ) : (
+        <FlatList
+          data={products}
+          style={styles.containerList}
+          renderItem={({item}) => <MovementItem product={item} />}
+          keyExtractor={item => item.id}
+        />
+      )}
     </View>
   );
 };
