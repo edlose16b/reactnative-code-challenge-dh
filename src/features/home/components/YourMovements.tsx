@@ -7,14 +7,16 @@ import TextStyles from '../../shared/textstyles';
 import MovementItem from './MovementItem';
 
 const YourMovements: FC = () => {
-  const products = useSelector((state: AppStore) => state.products);
+  const {products: filteredProducts} = useSelector(
+    (state: AppStore) => state.products,
+  );
 
   return (
     <View>
       <Text style={TextStyles.subtitle}>TUS MOVIMIENTOS</Text>
       <SizedBox height={20} />
       <FlatList
-        data={products}
+        data={filteredProducts}
         style={styles.containerList}
         renderItem={({item}) => <MovementItem product={item} />}
         keyExtractor={item => item.id}

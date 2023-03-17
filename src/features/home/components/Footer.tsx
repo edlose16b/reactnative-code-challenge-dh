@@ -19,7 +19,7 @@ const _buildButtonsByFilter = (options: FilterOptions, setFilter: Function) => {
       <Button
         onPress={() => {
           console.log('gaa');
-          setFilter!(FilterOptions.ALL);
+          setFilter(FilterOptions.ALL);
         }}
         title="Todos"
         accessibilityLabel="Learn more about this purple button"
@@ -33,7 +33,7 @@ const _buildButtonsByFilter = (options: FilterOptions, setFilter: Function) => {
         <Button
           onPress={() => {
             console.log('gaa');
-            setFilter!(FilterOptions.WON);
+            setFilter(FilterOptions.WON);
           }}
           title="Ganados"
           accessibilityLabel="Learn more about this purple button"

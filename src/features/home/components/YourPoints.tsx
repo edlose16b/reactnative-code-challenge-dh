@@ -9,7 +9,9 @@ import {AppStore} from '../../../redux/store';
 import {Product} from '../../../modules/products';
 
 const YourPoints: FC = () => {
-  const products = useSelector((state: AppStore) => state.products);
+  const {products: filteredProducts} = useSelector(
+    (state: AppStore) => state.products,
+  );
 
   const month = 'December';
 
@@ -22,7 +24,7 @@ const YourPoints: FC = () => {
         <SizedBox height={9} />
         <View style={styles.pointsSection}>
           <Text style={styles.pointsNumber}>
-            {parseNumberToFixed(totalPoints(products))}
+            {parseNumberToFixed(totalPoints(filteredProducts))}
           </Text>
           <Text style={styles.pointsText}> pts</Text>
         </View>

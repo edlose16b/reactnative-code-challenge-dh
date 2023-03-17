@@ -1,9 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {Product} from '../modules/products';
-import {productsSlice} from './states/products';
+import {ProductState, productsSlice} from './states/products';
 
 export interface AppStore {
-  products: Product[];
+  products: ProductState;
 }
 
 export default configureStore<AppStore>({
