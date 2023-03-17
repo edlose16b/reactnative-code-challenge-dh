@@ -7,4 +7,8 @@ export default class TextStyles {
     fontSize: 14,
     fontWeight: '800',
   };
+
+  static textBold: TextStyle = {
+    fontWeight: 'bold',
+  };
 }

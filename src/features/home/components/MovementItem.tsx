@@ -1,10 +1,12 @@
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {format} from 'date-fns';
 import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Avatar, ListItem} from 'react-native-elements';
 import {Product} from '../../../modules/products';
 import Colors from '../../shared/colors';
 import {SizedBox} from '../../shared/components';
-import {format} from 'date-fns';
 import Sizes from '../../shared/sizes';
 
 type MovementItemProps = {
@@ -12,16 +14,13 @@ type MovementItemProps = {
 };
 
 const MovementItem: FC<MovementItemProps> = ({product}) => {
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
   return (
     <ListItem
       key={product.id}
-      onLongPress={() => {
-        console.log('dasd');
-      }}
       onPress={() => {
-        console.log('====================================');
-        console.log('Navigate to Product');
-        console.log('====================================');
+        navigation.navigate('Product', {product});
       }}>
       <Avatar
         source={{uri: product.image}}

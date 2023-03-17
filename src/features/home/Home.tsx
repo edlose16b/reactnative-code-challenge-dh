@@ -1,5 +1,12 @@
 import React, {FC, useEffect} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+  useColorScheme,
+} from 'react-native';
 import Colors from '../shared/colors';
 import {Container, SizedBox} from '../shared/components';
 import Footer from './components/Footer';
@@ -8,9 +15,12 @@ import YourPoints from './components/YourPoints';
 import {fetchProducts} from '../../redux/states/products';
 import {useDispatch} from 'react-redux';
 import type {} from 'redux-thunk/extend-redux';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 type HomeViewProps = {};
 const HomeView: FC<HomeViewProps> = _ => {
+  const isDarkMode = useColorScheme() === 'dark';
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,17 +29,23 @@ const HomeView: FC<HomeViewProps> = _ => {
   }, []);
 
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Container>
-        <View>{_buildHi()}</View>
-        <SizedBox height={20} />
-        <YourPoints />
-        <SizedBox height={20} />
-        <YourMovements />
-        <SizedBox height={20} />
-        <Footer />
-      </Container>
-    </ScrollView>
+    <SafeAreaView>
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        // backgroundColor={backgroundStyle.backgroundColor}
+      />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <Container>
+          <View>{_buildHi()}</View>
+          <SizedBox height={20} />
+          <YourPoints />
+          <SizedBox height={20} />
+          <YourMovements />
+          <SizedBox height={20} />
+          <Footer />
+        </Container>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

@@ -8,6 +8,7 @@ import {
 } from '../contexts/FilterStateContext';
 import {useDispatch} from 'react-redux';
 import {filterProducts} from '../../../redux/states/products';
+import Colors from '../../shared/colors';
 
 type FooterProps = {};
 
@@ -30,7 +31,8 @@ const _buildButtonsByFilter = (options: FilterOptions, filter: Function) => {
           filter(FilterOptions.ALL);
         }}
         title="Todos"
-        accessibilityLabel="Learn more about this purple button"
+        accessibilityLabel="Todos"
+        buttonStyle={{backgroundColor: Colors.blue}}
       />
     );
   }
@@ -43,7 +45,8 @@ const _buildButtonsByFilter = (options: FilterOptions, filter: Function) => {
             filter(FilterOptions.WON);
           }}
           title="Ganados"
-          accessibilityLabel="Learn more about this purple button"
+          accessibilityLabel="Ganados"
+          buttonStyle={{backgroundColor: Colors.blue}}
         />
       </View>
       <View style={styles.buttonWidthSection}>
@@ -52,7 +55,8 @@ const _buildButtonsByFilter = (options: FilterOptions, filter: Function) => {
             filter(FilterOptions.redeemed);
           }}
           title="Canjeados"
-          accessibilityLabel="Learn more about this purple button"
+          accessibilityLabel="Canjeados"
+          buttonStyle={{backgroundColor: Colors.blue}}
         />
       </View>
     </View>

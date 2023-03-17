@@ -5,4 +5,5 @@ export default class Colors {
   static gray = '#9B9898';
   static green = '#00B833';
   static red = '#FF0000';
+  static lightPurple = '#CFD6FF';
 }
