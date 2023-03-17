@@ -68,6 +68,9 @@
     ],
     "watchPathIgnorePatterns": [
       "/__tests__/modules/products/core"
-    ]
+    ],
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }
