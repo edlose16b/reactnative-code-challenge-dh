@@ -33,7 +33,7 @@ const MovementItem: FC<MovementItemProps> = ({product}) => {
           {format(Date.parse(product.createdAt.toString()), 'dd MMMM, yyyy')}
         </ListItem.Subtitle>
       </ListItem.Content>
-      <ListItem>
+      <ListItem containerStyle={styles.listItem}>
         <View style={styles.points}>
           {_buildSignalByRedeption(product.isRedemption)}
           <SizedBox width={5} />
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   bold: {fontWeight: 'bold'},
   pointsText: {fontWeight: 'bold', fontSize: Sizes.normal},
   icon: {fontWeight: 'bold', fontSize: 18},
+  listItem: {backgroundColor: 'transparent'},
 });
 
 export default MovementItem;
