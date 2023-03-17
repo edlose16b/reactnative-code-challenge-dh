@@ -5,15 +5,17 @@ import {AppStore} from '../../../redux/store';
 import {SizedBox} from '../../shared/components';
 import TextStyles from '../../shared/textstyles';
 import MovementItem from './MovementItem';
+import {useTranslation} from 'react-i18next';
 
 const YourMovements: FC = () => {
+  const {t} = useTranslation();
   const {products: filteredProducts} = useSelector(
     (state: AppStore) => state.products,
   );
 
   return (
     <View>
-      <Text style={TextStyles.subtitle}>TUS MOVIMIENTOS</Text>
+      <Text style={TextStyles.subtitle}>{t('your_movements')}</Text>
       <SizedBox height={20} />
       <FlatList
         data={filteredProducts}

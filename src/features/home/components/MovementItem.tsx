@@ -1,6 +1,7 @@
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {format} from 'date-fns';
+
 import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Avatar, ListItem} from 'react-native-elements';

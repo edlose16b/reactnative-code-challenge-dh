@@ -16,11 +16,11 @@ import {fetchProducts} from '../../redux/states/products';
 import {useDispatch} from 'react-redux';
 import type {} from 'redux-thunk/extend-redux';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useTranslation} from 'react-i18next';
 
 type HomeViewProps = {};
 const HomeView: FC<HomeViewProps> = _ => {
   const isDarkMode = useColorScheme() === 'dark';
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,10 +50,12 @@ const HomeView: FC<HomeViewProps> = _ => {
 };
 
 const _buildHi = () => {
+  const {t} = useTranslation();
+
   return (
     <View>
-      <Text style={styles.title}>Bienvenido de vuelta!</Text>
-      <Text>Rubén Rodriguez</Text>
+      <Text style={styles.title}>{t('welcome_back')}</Text>
+      <Text>Equipo de Reclutadores</Text>
     </View>
   );
 };

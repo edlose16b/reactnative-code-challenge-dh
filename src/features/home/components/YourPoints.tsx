@@ -7,8 +7,10 @@ import TextStyles from '../../shared/textstyles';
 import {useSelector} from 'react-redux';
 import {AppStore} from '../../../redux/store';
 import {Product} from '../../../modules/products';
+import {useTranslation} from 'react-i18next';
 
 const YourPoints: FC = () => {
+  const {t} = useTranslation();
   const {products: filteredProducts} = useSelector(
     (state: AppStore) => state.products,
   );
@@ -17,7 +19,7 @@ const YourPoints: FC = () => {
 
   return (
     <View>
-      <Text style={TextStyles.subtitle}>TUS PUNTOS</Text>
+      <Text style={TextStyles.subtitle}>{t('your_points')}</Text>
       <SizedBox height={Sizes.normal} />
       <Container horizontal={20} vertical={20} style={styles.card}>
         <Text style={styles.title}>{month}</Text>

@@ -16,6 +16,7 @@ import {Dimensions} from 'react-native';
 import {format} from 'date-fns';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import TextStyles from '../shared/textstyles';
+import {useTranslation} from 'react-i18next';
 
 type ProductViewProps = {
   route: RouteProp<{params: {product: Product}}, 'params'>;
@@ -25,6 +26,7 @@ const {height} = Dimensions.get('window');
 const ProductView: FC<ProductViewProps> = ({route}) => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const product = route.params.product;
+  const {t} = useTranslation();
 
   return (
     <SafeAreaView>
@@ -36,23 +38,26 @@ const ProductView: FC<ProductViewProps> = ({route}) => {
           <Image source={{uri: product.image}} style={styles.image} />
           <SizedBox height={Sizes.extraBig} />
 
-          <Text style={TextStyles.subtitle}>Detalles del producto:</Text>
+          <Text style={TextStyles.subtitle}>{t('product_details')}</Text>
           <SizedBox height={19} />
           <Text style={styles.textDate}>
-            {'Comprado el ' +
+            {t('purchase_at') +
+              ' ' +
               format(Date.parse(product.createdAt.toString()), 'dd MMMM, yyyy')}
           </Text>
           <SizedBox height={Sizes.big} />
           <Text style={TextStyles.subtitle}>
-            {getTextByRedemption(product.isRedemption)}
+            {t(getTextByRedemption(product.isRedemption))}
           </Text>
           <SizedBox height={19} />
-          <Text style={styles.textPoints}>{product.points + ' puntos'}</Text>
+          <Text style={styles.textPoints}>
+            {product.points + ' ' + t('points')}
+          </Text>
           <SizedBox height={Sizes.big} />
         </View>
 
         <Button
-          title={'Aceptar'}
+          title={'' + t('accept')}
           onPress={() => navigation.pop()}
           buttonStyle={{backgroundColor: Colors.blue}}
         />
@@ -63,8 +68,8 @@ const ProductView: FC<ProductViewProps> = ({route}) => {
 
 const getTextByRedemption = (isRedemption: boolean) => {
   return isRedemption
-    ? 'Con esta compra canjeaste:'
-    : 'Con esta compra acumulaste:';
+    ? 'points_used_in_this_purchase'
+    : 'points_won_in_this_purchase';
 };
 
 const styles = StyleSheet.create({

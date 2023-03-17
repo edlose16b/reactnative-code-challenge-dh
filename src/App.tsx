@@ -7,13 +7,14 @@
  *
  * @format
  */
-
+import './i18n';
 import React from 'react';
 
 import {Provider} from 'react-redux';
 import AppNavigator from './AppNavigator';
 import FilterStateProvider from './features/home/contexts/FilterStateContext';
 import store from './redux/store';
+
 const App = () => {
   return (
     <Provider store={store}>

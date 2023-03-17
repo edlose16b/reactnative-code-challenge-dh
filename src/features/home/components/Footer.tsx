@@ -9,29 +9,35 @@ import {
 import {useDispatch} from 'react-redux';
 import {filterProducts} from '../../../redux/states/products';
 import Colors from '../../shared/colors';
+import {useTranslation} from 'react-i18next';
 
 type FooterProps = {};
 
 const Footer: FC<FooterProps> = ({}) => {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
   const {filterData, filter} = useFilterStateContext();
 
   useEffect(() => {
     dispatch(filterProducts(filterData));
   }, [filterData]);
 
-  return <View>{_buildButtonsByFilter(filterData, filter)}</View>;
+  return <View>{_buildButtonsByFilter(filterData, filter, t)}</View>;
 };
 
-const _buildButtonsByFilter = (options: FilterOptions, filter: Function) => {
+const _buildButtonsByFilter = (
+  options: FilterOptions,
+  filter: Function,
+  t: Function,
+) => {
   if (options !== FilterOptions.ALL) {
     return (
       <Button
         onPress={() => {
           filter(FilterOptions.ALL);
         }}
-        title="Todos"
-        accessibilityLabel="Todos"
+        title={'' + t('all')}
+        accessibilityLabel={'' + t('all')}
         buttonStyle={{backgroundColor: Colors.blue}}
       />
     );
@@ -44,8 +50,8 @@ const _buildButtonsByFilter = (options: FilterOptions, filter: Function) => {
           onPress={() => {
             filter(FilterOptions.WON);
           }}
-          title="Ganados"
-          accessibilityLabel="Ganados"
+          title={'' + t('won')}
+          accessibilityLabel={'' + t('won')}
           buttonStyle={{backgroundColor: Colors.blue}}
         />
       </View>
@@ -54,8 +60,8 @@ const _buildButtonsByFilter = (options: FilterOptions, filter: Function) => {
           onPress={() => {
             filter(FilterOptions.redeemed);
           }}
-          title="Canjeados"
-          accessibilityLabel="Canjeados"
+          title={'' + t('redeemed')}
+          accessibilityLabel={'' + t('redeemed')}
           buttonStyle={{backgroundColor: Colors.blue}}
         />
       </View>
