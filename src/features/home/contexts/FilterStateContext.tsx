@@ -7,12 +7,12 @@ export enum FilterOptions {
 }
 
 type FilterStateContextProps = {
-  filter: FilterOptions;
-  setFilter: Function;
+  filterData: FilterOptions;
+  filter: Function;
 };
 const FilterStateContext = createContext<FilterStateContextProps>({
-  filter: FilterOptions.ALL,
-  setFilter: Function,
+  filterData: FilterOptions.ALL,
+  filter: Function,
 });
 
 export type FilterStateProviderProps = {
@@ -20,13 +20,21 @@ export type FilterStateProviderProps = {
 };
 
 const FilterStateProvider: FC<FilterStateProviderProps> = ({children}) => {
-  const [filter, setFilter] = useState<FilterOptions>(FilterOptions.ALL);
+  const [filterData, setFilterData] = useState<FilterOptions>(
+    FilterOptions.ALL,
+  );
 
+  const filter = (filterOption: FilterOptions) => {
+    console.log('====================================');
+    console.log('from context', filterOption);
+    console.log('====================================');
+    setFilterData(filterOption);
+  };
   return (
     <FilterStateContext.Provider
       value={{
+        filterData,
         filter,
-        setFilter,
       }}>
       {children}
     </FilterStateContext.Provider>

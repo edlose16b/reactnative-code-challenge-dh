@@ -1,25 +1,33 @@
-import React, {FC} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {FC, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {
   FilterOptions,
   useFilterStateContext,
 } from '../contexts/FilterStateContext';
+import {useDispatch} from 'react-redux';
+import {filterProducts} from '../../../redux/states/products';
 
 type FooterProps = {};
 
 const Footer: FC<FooterProps> = ({}) => {
-  const {filter, setFilter} = useFilterStateContext();
-  return <>{_buildButtonsByFilter(filter, setFilter)}</>;
+  const dispatch = useDispatch();
+  const {filterData, filter} = useFilterStateContext();
+
+  useEffect(() => {
+    dispatch(filterProducts(filterData));
+  }, [filterData]);
+
+  return <View>{_buildButtonsByFilter(filterData, filter)}</View>;
 };
 
-const _buildButtonsByFilter = (options: FilterOptions, setFilter: Function) => {
+const _buildButtonsByFilter = (options: FilterOptions, filter: Function) => {
   if (options !== FilterOptions.ALL) {
     return (
       <Button
         onPress={() => {
-          console.log('gaa');
-          setFilter(FilterOptions.ALL);
+          filter(FilterOptions.ALL);
         }}
         title="Todos"
         accessibilityLabel="Learn more about this purple button"
@@ -32,8 +40,7 @@ const _buildButtonsByFilter = (options: FilterOptions, setFilter: Function) => {
       <View style={styles.buttonWidthSection}>
         <Button
           onPress={() => {
-            console.log('gaa');
-            setFilter(FilterOptions.WON);
+            filter(FilterOptions.WON);
           }}
           title="Ganados"
           accessibilityLabel="Learn more about this purple button"
@@ -42,8 +49,7 @@ const _buildButtonsByFilter = (options: FilterOptions, setFilter: Function) => {
       <View style={styles.buttonWidthSection}>
         <Button
           onPress={() => {
-            console.log('gaa');
-            setFilter!(FilterOptions.redeemed);
+            filter(FilterOptions.redeemed);
           }}
           title="Canjeados"
           accessibilityLabel="Learn more about this purple button"
