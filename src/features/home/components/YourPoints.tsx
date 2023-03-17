@@ -4,10 +4,15 @@ import Colors from '../../shared/colors';
 import {Container, SizedBox} from '../../shared/components';
 import Sizes from '../../shared/sizes';
 import TextStyles from '../../shared/textstyles';
+import {useSelector} from 'react-redux';
+import {AppStore} from '../../../redux/store';
+import {Product} from '../../../modules/products';
 
 const YourPoints: FC = () => {
+  const products = useSelector((state: AppStore) => state.products);
+
   const month = 'December';
-  const points = 10000;
+
   return (
     <View>
       <Text style={TextStyles.subtitle}>TUS PUNTOS</Text>
@@ -17,7 +22,7 @@ const YourPoints: FC = () => {
         <SizedBox height={9} />
         <View style={styles.pointsSection}>
           <Text style={styles.pointsNumber}>
-            {points.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+            {parseNumberToFixed(totalPoints(products))}
           </Text>
           <Text style={styles.pointsText}> pts</Text>
         </View>
@@ -25,6 +30,18 @@ const YourPoints: FC = () => {
       </Container>
     </View>
   );
+};
+
+const totalPoints = (products: Product[]): number => {
+  return products.reduce((total, product) => {
+    if (product.isRedemption) {
+      return total - product.points;
+    }
+    return total + product.points;
+  }, 0);
+};
+const parseNumberToFixed = (number: number): String => {
+  return number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 };
 
 const styles = StyleSheet.create({

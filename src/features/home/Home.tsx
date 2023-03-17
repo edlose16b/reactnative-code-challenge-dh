@@ -1,14 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Colors from '../shared/colors';
 import {Container, SizedBox} from '../shared/components';
 import Footer from './components/Footer';
 import YourMovements from './components/YourMovements';
 import YourPoints from './components/YourPoints';
+import {fetchProducts} from '../../redux/states/products';
+import {useDispatch} from 'react-redux';
+import type {} from 'redux-thunk/extend-redux';
 
 type HomeViewProps = {};
 const HomeView: FC<HomeViewProps> = _ => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <Container>

@@ -29,7 +29,7 @@ const MovementItem: FC<MovementItemProps> = ({product}) => {
         size={55}
       />
       <ListItem.Content>
-        <ListItem.Title style={styles.bold}>Chris Jackson</ListItem.Title>
+        <ListItem.Title style={styles.bold}>{product.product}</ListItem.Title>
         <ListItem.Subtitle style={{}}>
           {format(Date.parse(product.createdAt.toString()), 'dd MMMM, yyyy')}
         </ListItem.Subtitle>
