@@ -22,9 +22,14 @@ export class MockApiProductsDatasource implements ProductsDatasource {
         throw new ServerError(response.statusText);
       }
 
-      return response.data.map((product: any) =>
-        ProductModel.fromJson(product),
-      );
+      return response.data
+        .filter(data => (data.createdAt as string).startsWith('2022-12-'))
+        .sort((a, b) => {
+          return (
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+        })
+        .map((product: any) => ProductModel.fromJson(product));
     } catch (error) {
       throw new ServerError('Server Failure');
     }

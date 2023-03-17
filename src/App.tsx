@@ -14,7 +14,8 @@ import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import HomeView from './features/home/Home';
 import FilterStateProvider from './features/home/contexts/FilterStateContext';
-
+import {Provider} from 'react-redux';
+import store from './redux/store';
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -23,15 +24,17 @@ const App = () => {
   };
 
   return (
-    <FilterStateProvider>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
-        />
-        <HomeView />
-      </SafeAreaView>
-    </FilterStateProvider>
+    <Provider store={store}>
+      <FilterStateProvider>
+        <SafeAreaView style={backgroundStyle}>
+          <StatusBar
+            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            backgroundColor={backgroundStyle.backgroundColor}
+          />
+          <HomeView />
+        </SafeAreaView>
+      </FilterStateProvider>
+    </Provider>
   );
 };
 

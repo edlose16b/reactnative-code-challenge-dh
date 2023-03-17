@@ -14,11 +14,7 @@ export default class GetProducts {
     try {
       return this.productsRepository.fetchAll();
     } catch (error) {
-      console.log('====================================');
-      console.log('Q es error', error);
-      console.log('====================================');
       if (error instanceof ServerError) {
-        console.log('throw GetProductsError');
         throw new GetProductsError();
       }
 
