@@ -1,3 +1,5 @@
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+
 jest.mock('react-i18next', () => ({
   // this mock makes sure any components using the translate hook can use it without a warning being shown
   useTranslation: () => {
@@ -8,4 +10,11 @@ jest.mock('react-i18next', () => ({
       },
     };
   },
+}));
+
+const mockNavigate = jest.fn();
+jest.mock('@react-navigation/native', () => ({
+  useNavigation: () => ({
+    navigate: mockNavigate,
+  }),
 }));

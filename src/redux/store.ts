@@ -5,8 +5,12 @@ export interface AppStore {
   products: ProductState;
 }
 
-export default configureStore<AppStore>({
-  reducer: {
-    products: productsSlice.reducer,
-  },
-});
+const createStore = (state?: AppStore | undefined) => {
+  return configureStore<AppStore>({
+    preloadedState: state,
+    reducer: {
+      products: productsSlice.reducer,
+    },
+  });
+};
+export default createStore;

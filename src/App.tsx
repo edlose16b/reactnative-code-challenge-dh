@@ -13,9 +13,10 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import AppNavigator from './AppNavigator';
 import FilterStateProvider from './features/home/contexts/FilterStateContext';
-import store from './redux/store';
+import createStore from './redux/store';
 
 const App = () => {
+  const store = createStore();
   return (
     <Provider store={store}>
       <FilterStateProvider>

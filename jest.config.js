@@ -11,6 +11,7 @@ module.exports = {
     '@react-native',
     '<rootDir>/__tests__/modules/products/core/',
     '<rootDir>/__tests__/setup',
+    '<rootDir>/__tests__/render_util',
   ],
   setupFiles: ['<rootDir>/__tests__/setup.ts'],
 };
