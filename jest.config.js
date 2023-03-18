@@ -10,6 +10,7 @@ module.exports = {
     '/detox',
     '@react-native',
     '<rootDir>/__tests__/modules/products/core/',
+    '<rootDir>/__tests__/setup',
   ],
   setupFiles: ['<rootDir>/__tests__/setup.ts'],
 };
