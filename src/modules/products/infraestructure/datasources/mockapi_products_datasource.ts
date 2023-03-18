@@ -23,7 +23,6 @@ export class MockApiProductsDatasource implements ProductsDatasource {
       }
 
       return response.data
-        .filter(data => (data.createdAt as string).startsWith('2022-12-'))
         .sort((a, b) => {
           return (
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()

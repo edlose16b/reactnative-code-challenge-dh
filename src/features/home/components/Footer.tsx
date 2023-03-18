@@ -3,7 +3,7 @@ import React, {FC, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {
-  FilterOptions,
+  FilterOptionsType,
   useFilterStateContext,
 } from '../contexts/FilterStateContext';
 import {useDispatch} from 'react-redux';
@@ -11,6 +11,7 @@ import {filterProducts} from '../../../redux/states/products';
 import Colors from '../../shared/colors';
 import {useTranslation} from 'react-i18next';
 
+type SelectOptionTypeFunction = (type: FilterOptionsType) => void;
 type FooterProps = {};
 
 const Footer: FC<FooterProps> = ({}) => {
@@ -22,19 +23,29 @@ const Footer: FC<FooterProps> = ({}) => {
     dispatch(filterProducts(filterData));
   }, [filterData]);
 
-  return <View>{_buildButtonsByFilter(filterData, filter, t)}</View>;
+  return (
+    <View>
+      {_buildButtonsByFilter(
+        filterData.type,
+        type => {
+          filter({date: filterData.date, type});
+        },
+        t,
+      )}
+    </View>
+  );
 };
 
 const _buildButtonsByFilter = (
-  options: FilterOptions,
-  filter: Function,
+  options: FilterOptionsType,
+  filter: SelectOptionTypeFunction,
   t: Function,
 ) => {
-  if (options !== FilterOptions.ALL) {
+  if (options !== FilterOptionsType.ALL) {
     return (
       <Button
         onPress={() => {
-          filter(FilterOptions.ALL);
+          filter(FilterOptionsType.ALL);
         }}
         title={'' + t('all')}
         accessibilityLabel={'' + t('all')}
@@ -48,7 +59,7 @@ const _buildButtonsByFilter = (
       <View style={styles.buttonWidthSection}>
         <Button
           onPress={() => {
-            filter(FilterOptions.WON);
+            filter(FilterOptionsType.WON);
           }}
           title={'' + t('won')}
           accessibilityLabel={'' + t('won')}
@@ -58,7 +69,7 @@ const _buildButtonsByFilter = (
       <View style={styles.buttonWidthSection}>
         <Button
           onPress={() => {
-            filter(FilterOptions.redeemed);
+            filter(FilterOptionsType.redeemed);
           }}
           title={'' + t('redeemed')}
           accessibilityLabel={'' + t('redeemed')}

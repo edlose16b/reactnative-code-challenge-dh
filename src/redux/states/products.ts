@@ -1,8 +1,12 @@
 import {PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 import {getProductsUseCase} from '../../dependency_injections';
-import {FilterOptions} from '../../features/home/contexts/FilterStateContext';
+import {
+  FilterOptions,
+  FilterOptionsType,
+} from '../../features/home/contexts/FilterStateContext';
 import {Product} from '../../modules/products';
+import {filterByMonthAndYear} from '../../utils/dates';
 
 export type ProductState = {
   memoryProducts: Product[] | null;
@@ -31,18 +35,34 @@ export const productsSlice = createSlice({
         return;
       }
 
-      return {
-        memoryProducts: state.memoryProducts,
-        products: state.memoryProducts.filter(product => {
-          switch (action.payload) {
-            case FilterOptions.ALL:
+      const {date, type} = action.payload;
+      // filter by Date
+
+      let newStateProducts: Product[] = state.memoryProducts;
+
+      if (date != null) {
+        newStateProducts = filterByMonthAndYear(
+          action.payload.date!,
+          state.memoryProducts,
+        );
+      }
+
+      if (type != null) {
+        newStateProducts = newStateProducts.filter(product => {
+          switch (type) {
+            case FilterOptionsType.ALL:
               return true;
-            case FilterOptions.WON:
+            case FilterOptionsType.WON:
               return !product.isRedemption;
-            case FilterOptions.redeemed:
+            case FilterOptionsType.redeemed:
               return product.isRedemption;
           }
-        }),
+        });
+      }
+
+      return {
+        memoryProducts: state.memoryProducts,
+        products: newStateProducts,
       };
     },
   },
@@ -60,9 +80,6 @@ export const productsSlice = createSlice({
       return state;
     });
     builder.addCase(fetchProducts.rejected, (state, _) => {
-      console.log('====================================');
-      console.log('ERROR REJECTING PRODUCT');
-      console.log('====================================');
       state = {memoryProducts: [], products: []};
       return state;
     });

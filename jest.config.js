@@ -13,5 +13,8 @@ module.exports = {
     '<rootDir>/__tests__/setup',
     '<rootDir>/__tests__/render_util',
   ],
-  setupFiles: ['<rootDir>/__tests__/setup.ts'],
+  setupFiles: [
+    '<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js',
+    '<rootDir>/__tests__/setup.ts',
+  ],
 };

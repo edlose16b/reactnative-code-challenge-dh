@@ -17,7 +17,7 @@ describe('[YourMovements]', () => {
     });
     test('should render a initial component', () => {
       screen.getByText('your_movements');
-      screen.getByTestId('movement-loader-id');
+      screen.getByTestId('loader-id');
     });
   });
 
@@ -32,7 +32,7 @@ describe('[YourMovements]', () => {
     });
     test('should render a list empty of products', () => {
       screen.getByText('your_movements');
-      expect(() => screen.getByTestId('movement-loader-id')).toThrow();
+      expect(() => screen.getByTestId('loader-id')).toThrow();
       screen.getByTestId('products-lists-id');
     });
   });
@@ -48,7 +48,7 @@ describe('[YourMovements]', () => {
     });
     test('should render a list of products', () => {
       screen.getByText('your_movements');
-      expect(() => screen.getByTestId('movement-loader-id')).toThrow();
+      expect(() => screen.getByTestId('loader-id')).toThrow();
       const flatList = screen.getByTestId('products-lists-id');
       expect(flatList.children).toHaveLength(1);
     });

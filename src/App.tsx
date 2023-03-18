@@ -14,6 +14,7 @@ import {Provider} from 'react-redux';
 import AppNavigator from './AppNavigator';
 import FilterStateProvider from './features/home/contexts/FilterStateContext';
 import createStore from './redux/store';
+import 'react-native-gesture-handler';
 
 const App = () => {
   const store = createStore();

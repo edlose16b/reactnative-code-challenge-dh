@@ -16,7 +16,7 @@ describe('[YourPoints]', () => {
       );
     });
     test('should render a card with empty points', () => {
-      screen.getByText('0.00');
+      screen.getByTestId('loader-id');
     });
   });
 
@@ -30,7 +30,7 @@ describe('[YourPoints]', () => {
       );
     });
     test('should render a list empty of products', () => {
-      screen.getByText('0.00');
+      screen.getByTestId('loader-id');
     });
   });
 

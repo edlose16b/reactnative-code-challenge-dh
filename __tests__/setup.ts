@@ -18,3 +18,5 @@ jest.mock('@react-navigation/native', () => ({
     navigate: mockNavigate,
   }),
 }));
+
+jest.mock('react-native-gesture-handler', () => {});
