@@ -22,6 +22,7 @@ const YourMovements: FC = () => {
         <MovementLoader />
       ) : (
         <FlatList
+          testID="products-lists-id"
           data={products}
           style={styles.containerList}
           renderItem={({item}) => <MovementItem product={item} />}

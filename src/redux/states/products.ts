@@ -1,8 +1,8 @@
 import {PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
-import {Product} from '../../modules/products';
 import {getProductsUseCase} from '../../dependency_injections';
 import {FilterOptions} from '../../features/home/contexts/FilterStateContext';
+import {Product} from '../../modules/products';
 
 export type ProductState = {
   memoryProducts: Product[] | null;
@@ -18,7 +18,6 @@ export const fetchProducts = createAsyncThunk(
   'products/get',
   async (__, _): Promise<Product[]> => {
     const products = await getProductsUseCase.handle();
-    console.log('products total: ', products.length);
     return products;
   },
 );
@@ -61,6 +60,9 @@ export const productsSlice = createSlice({
       return state;
     });
     builder.addCase(fetchProducts.rejected, (state, _) => {
+      console.log('====================================');
+      console.log('ERROR REJECTING PRODUCT');
+      console.log('====================================');
       state = {memoryProducts: [], products: []};
       return state;
     });
