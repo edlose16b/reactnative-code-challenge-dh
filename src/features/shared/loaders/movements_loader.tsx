@@ -8,7 +8,7 @@ const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 const MovementLoader = () => {
   return (
     // eslint-disable-next-line react-native/no-inline-styles
-    <View style={{alignItems: 'center'}}>
+    <View style={{alignItems: 'center'}} testID="movement-loader-id">
       <ShimmerPlaceholder LinearGradient={LinearGradient} />
       <SizedBox height={20} />
       <ShimmerPlaceholder LinearGradient={LinearGradient} />

@@ -10,7 +10,7 @@ type FilterStateContextProps = {
   filterData: FilterOptions;
   filter: Function;
 };
-const FilterStateContext = createContext<FilterStateContextProps>({
+export const FilterStateContext = createContext<FilterStateContextProps>({
   filterData: FilterOptions.ALL,
   filter: Function,
 });
@@ -25,9 +25,6 @@ const FilterStateProvider: FC<FilterStateProviderProps> = ({children}) => {
   );
 
   const filter = (filterOption: FilterOptions) => {
-    console.log('====================================');
-    console.log('from context', filterOption);
-    console.log('====================================');
     setFilterData(filterOption);
   };
   return (

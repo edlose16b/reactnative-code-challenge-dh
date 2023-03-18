@@ -19,7 +19,8 @@ const MovementItem: FC<MovementItemProps> = ({product}) => {
 
   return (
     <ListItem
-      key={product.id}
+      key={'product-item-' + product.id}
+      testID={'product-item-' + product.id}
       onPress={() => {
         navigation.navigate('Product', {product});
       }}>
