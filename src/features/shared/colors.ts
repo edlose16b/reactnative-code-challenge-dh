@@ -1,3 +1,6 @@
+/**
+ * Colors used in the application
+ */
 export default class Colors {
   static black = '#020202';
   static blue = '#334FFA';

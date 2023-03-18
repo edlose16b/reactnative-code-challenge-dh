@@ -7,6 +7,9 @@ type ContainerProps = {
   vertical?: number;
   style?: ViewStyle;
 };
+/**
+ * It renders a View with default paddings
+ */
 const Container: React.FC<PropsWithChildren<ContainerProps>> = ({
   style,
   children,

@@ -5,6 +5,9 @@ import {SizedBox} from '../components';
 import {createShimmerPlaceholder} from 'react-native-shimmer-placeholder';
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
+/**
+ * It renders a placeholder loader
+ */
 const MovementLoader = () => {
   return (
     // eslint-disable-next-line react-native/no-inline-styles

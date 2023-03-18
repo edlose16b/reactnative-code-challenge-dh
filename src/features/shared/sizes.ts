@@ -1,3 +1,6 @@
+/**
+ * Sizes used in the application
+ */
 export default class Sizes {
   static small = 12;
   static normal = 16;

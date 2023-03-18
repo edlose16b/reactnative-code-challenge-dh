@@ -3,6 +3,9 @@ import {GetProductsError} from '../core/errors';
 import Product from '../domain/entities/product';
 import ProductsRepository from '../domain/repositories/products_repository';
 
+/**
+ * Usecase for get all products
+ */
 export default class GetProducts {
   private productsRepository: ProductsRepository;
 
